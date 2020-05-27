@@ -36,7 +36,6 @@ public class Ruleta {
         int num1 = sc.nextInt();
         System.out.println("El numero:" + " " + num1 + " " + "salio ganador" + " " + j.cuentaNumero(num1) + " " + "veces");
         System.out.println("Suma del dinero apostado a numeros pares:" + " " + j.sumaPares());
-
     }
 
 }
