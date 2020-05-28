@@ -17,7 +17,7 @@ public class Ejercicio3Fabrica {
         
         for (int i = 0; i < cant; i++) {
             System.out.println("Ingrese descripcion del material:");
-            String desc=sc.nextLine();
+            String desc=sc.next();
             sc.nextLine();
             System.out.println("Ingrese codigo del material:" + desc);
             int cod=sc.nextInt();
@@ -29,13 +29,12 @@ public class Ejercicio3Fabrica {
         
             p.agregarproducto(m);}
         
+        System.out.println("INFORMACION");
         
-        
-        System.out.println("Costo total del producto:" + p.returnCosto());
-        sc.nextLine();
+        System.out.println("Costo total del producto:");
+        System.out.println("$"+p.returnCosto());        
         System.out.println("Ingrese codigo del material:");
-        System.out.println(p.Existe(sc.nextInt()));
-        sc.nextLine();
+        System.out.println(p.Existe(sc.nextInt()));      
         System.out.println("Ingrese valor unitario:");
         double valor=sc.nextDouble();
          Material [] m1= p.materialesSegunParametro(valor);

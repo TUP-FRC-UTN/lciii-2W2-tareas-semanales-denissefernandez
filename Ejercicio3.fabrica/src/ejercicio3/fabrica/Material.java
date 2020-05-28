@@ -41,6 +41,6 @@ public class Material {
     }
     @Override
     public String toString(){
-    return "material" + " " + descripcion + " " + "codigo" + " " + codigo + " " + "valor unitario" + " " + valorUnitario;}
+    return "MATERIAL:" + "{" + descripcion + ", " + "codigo" + " " + codigo + ", " + "valor unitario" + " " +"$"+valorUnitario+"}";}
     
 }
