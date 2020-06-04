@@ -2,7 +2,7 @@
 package guia.pkg3.ejercicio.pkg3;
 
 
-public class Empleado {
+public abstract class Empleado {
     
     protected String nombre;
     protected int legajo;
@@ -32,13 +32,7 @@ public class Empleado {
         return tipoEmpleado;
     }
     
-     public double calcularSueldo()
-    {
-        double montoFijo=0;
-        montoFijo=this.sueldoBasico;
-        
-        return montoFijo;
-    }
+     public abstract double calcularSueldo();
     
 
     @Override

@@ -101,7 +101,7 @@ public class Guia3Ejercicio3 {
         System.out.println("EL EMPLEADO CON EL MENOR SUELDO:");
         System.out.println(e.menorSueldo());
         System.out.println("PROMEDIO DE SUELDOS DE LOS OBREROS:");
-        System.out.println("$"+ e.promSueldosObreros());
+        System.out.println("$"+ e.promedSueldosObreros());
        
         
         

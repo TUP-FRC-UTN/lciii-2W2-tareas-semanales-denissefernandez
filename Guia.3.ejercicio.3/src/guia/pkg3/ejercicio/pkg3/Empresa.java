@@ -31,23 +31,45 @@ public class Empresa {
         }
         return emplea2;
     }
-
-    public double[] sumaSueldos() {
+// SUMASUELDOS SIN INSTANCE OF
+    
+//    public double[] sumaSueldos() {
+//
+//        double[] sumaSueldos = new double[3];
+//
+//        for (int i = 0; i < empleados.length; i++) {
+//            if ((empleados[i] != null)) {
+//                switch (empleados[i].getTipoEmpleado()) {
+//                    case 1:
+//                        sumaSueldos[0] += empleados[i].calcularSueldo();
+//                        break;
+//                    case 2:
+//                        sumaSueldos[1] += empleados[i].calcularSueldo();
+//                        break;
+//                    default:
+//                        sumaSueldos[2] += empleados[i].calcularSueldo();
+//                        break;
+//                }
+//            }
+//        }
+//        return sumaSueldos;
+//
+//    }
+    
+     public double[] sumaSueldos() {
 
         double[] sumaSueldos = new double[3];
 
         for (int i = 0; i < empleados.length; i++) {
             if ((empleados[i] != null)) {
-                switch (empleados[i].getTipoEmpleado()) {
-                    case 1:
-                        sumaSueldos[0] += empleados[i].calcularSueldo();
-                        break;
-                    case 2:
+                if(empleados[i] instanceof Administrativo) {
+                    sumaSueldos[0] += empleados[i].calcularSueldo();
+                        }
+                else if(empleados[i] instanceof Obrero){
                         sumaSueldos[1] += empleados[i].calcularSueldo();
-                        break;
-                    default:
-                        sumaSueldos[2] += empleados[i].calcularSueldo();
-                        break;
+                        }
+                else{sumaSueldos[2] += empleados[i].calcularSueldo();
+                        
                 }
             }
         }
@@ -82,15 +104,35 @@ public class Empresa {
         return menorSueldo;
 
     }
-
-    public double promSueldosObreros() {
+//PROMEDIO DE SUELDO DE OBREROS SIN USAR INSTANCE OF
+    //
+//    public double promSueldosObreros() {
+//        
+//        double promedio=0;
+//        double sumaSueldos=0;
+//        int cant=0;
+//        
+//        for (int i = 0; i < empleados.length; i++) {
+//            if(empleados[i]!=null && empleados[i].getTipoEmpleado() == 2){
+//                sumaSueldos+=empleados[i].calcularSueldo();
+//                cant++;
+//            }            
+//        }
+//        promedio=sumaSueldos/cant;
+//        return promedio;
+//        
+//    }
+    
+    //PROMEDIO SUELDO OBREROS CON ISNTANCEOF
+    
+    public double promedSueldosObreros() {
         
         double promedio=0;
         double sumaSueldos=0;
         int cant=0;
         
         for (int i = 0; i < empleados.length; i++) {
-            if(empleados[i]!=null && empleados[i].getTipoEmpleado() == 2){
+            if(empleados[i]!=null && empleados[i] instanceof Obrero){
                 sumaSueldos+=empleados[i].calcularSueldo();
                 cant++;
             }            
