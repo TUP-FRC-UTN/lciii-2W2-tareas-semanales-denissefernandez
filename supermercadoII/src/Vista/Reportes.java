@@ -23,6 +23,7 @@ public class Reportes extends javax.swing.JFrame {
     public Reportes() {
         initComponents();
         cagarComboProductos();
+        lblCant.setText(String.valueOf(con.obtenerCantidadMayorVigencia()));
     }
      public void cagarComboProductos()
     {

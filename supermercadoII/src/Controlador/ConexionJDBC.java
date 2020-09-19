@@ -9,6 +9,7 @@ package Controlador;
  *
  * @author Denise
  */
+import DTOs.ofertaProducto;
 import Modelo.Oferta;
 import Modelo.Producto;
 import java.sql.Connection;
@@ -116,5 +117,60 @@ public class ConexionJDBC {
         
         return total;
     }
+    
+     public int obtenerCantidadMayorVigencia() {
+        
+         int cant=0;
+        String consultaSQL = "select count(*) from ofertas \n" +
+                             "where diasVigencia>5";
+        try {
+            getConnection();
+            Statement stm = con.createStatement();
+            ResultSet rst = stm.executeQuery(consultaSQL);
+            if (rst.next()) {
+                cant = rst.getInt(1);
+               
+            }
+            rst.close();
+
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        } finally {
+            disconnect();
+        }
+        return cant;
+
+    }
+     
+     public ArrayList<ofertaProducto> obtenerOferta() {
+        
+         ArrayList<ofertaProducto> list= new ArrayList<>();
+        String consultaSQL = "SELECT O.*, nombre FROM OFERTAS O JOIN PRODUCTOS P ON O.idProducto=P.id";
+        try {
+            getConnection();
+            Statement stm = con.createStatement();
+            ResultSet rst= stm.executeQuery(consultaSQL);
+            while(rst.next()){
+            
+                int id=rst.getInt("id");
+                String produc= rst.getString("nombre");
+                double normal=rst.getDouble("precioNormal");
+                double oferta=rst.getDouble("precioOferta");
+                int stock=rst.getInt("stockDisponible");
+                String fecha= rst.getString("fechaInicioOferta");
+                int dias=rst.getInt("diasVigencia");
+                
+                ofertaProducto dto= new ofertaProducto(id,produc,normal,oferta,stock,fecha,dias);
+                list.add(dto);
+                
+            }
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        } finally {
+            disconnect();
+        }
+        return list;
+    }
+    
 
 }
