@@ -61,6 +61,7 @@ public class RegistrarOferta extends javax.swing.JFrame {
         TxtFecha = new javax.swing.JTextField();
         TxtVigencia = new javax.swing.JTextField();
         cboProductos = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +116,13 @@ public class RegistrarOferta extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("REPORTES");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,10 +147,12 @@ public class RegistrarOferta extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(cboProductos, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(TxtNormal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(TxtVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
-                                .addComponent(BtnRegistrar)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addComponent(BtnRegistrar))))))
                 .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
@@ -176,7 +186,9 @@ public class RegistrarOferta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnRegistrar))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,6 +263,10 @@ public class RegistrarOferta extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_BtnRegistrarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         new Reportes().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public boolean validarCamposVacios()
     {
         boolean vale=true;
@@ -324,6 +340,7 @@ public class RegistrarOferta extends javax.swing.JFrame {
     private javax.swing.JTextField TxtStock;
     private javax.swing.JTextField TxtVigencia;
     private javax.swing.JComboBox cboProductos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
