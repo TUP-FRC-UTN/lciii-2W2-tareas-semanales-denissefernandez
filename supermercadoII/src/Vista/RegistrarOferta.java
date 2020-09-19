@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import Controlador.ConexionJDBC;
+import Modelo.Oferta;
+import Modelo.Producto;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +21,21 @@ public class RegistrarOferta extends javax.swing.JFrame {
     /**
      * Creates new form RegistrarOferta
      */
+    ConexionJDBC con= new ConexionJDBC();
     public RegistrarOferta() {
         initComponents();
+        cagarComboProductos();
+    }
+    
+    public void cagarComboProductos()
+    {
+        DefaultComboBoxModel modelo= new DefaultComboBoxModel();
+        ArrayList<Producto> aux= con.obtenerProductos();
+        for (Producto p : aux) {
+            modelo.addElement(p);
+        }
+        cboProductos.setModel(modelo);       
+        
     }
 
     /**
@@ -61,6 +79,11 @@ public class RegistrarOferta extends javax.swing.JFrame {
         jLabel7.setText("DIAS DE VIGENCIA");
 
         BtnRegistrar.setText("REGISTRAR");
+        BtnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegistrarActionPerformed(evt);
+            }
+        });
 
         TxtNormal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -204,6 +227,60 @@ public class RegistrarOferta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TxtVigenciaKeyPressed
 
+    private void BtnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarActionPerformed
+       if(validarCamposVacios())
+       {
+           Producto p =(Producto)cboProductos.getSelectedItem();
+           double normal=Double.parseDouble(TxtNormal.getText());
+           double oferta=Double.parseDouble(TxtOferta.getText());
+           int stock= Integer.parseInt(TxtStock.getText());
+           String fecha=TxtFecha.getText();
+           int vigencia=Integer.parseInt(TxtVigencia.getText());
+           
+           if(con.insertarOferta(new Oferta(0,p,normal,oferta,stock,fecha,vigencia)))
+           {
+               JOptionPane.showMessageDialog(rootPane, "Oferta registrada exitosamente");
+           }
+           else
+           {
+               JOptionPane.showMessageDialog(rootPane, "ERROR: No se pudo insertar la oferta");
+           }
+                   
+           
+           
+       }
+    }//GEN-LAST:event_BtnRegistrarActionPerformed
+
+    public boolean validarCamposVacios()
+    {
+        boolean vale=true;
+        if(TxtNormal.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese precio normal");
+            vale=false;
+        }
+        if(TxtOferta.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese precio ofertado");
+            vale=false;
+        }
+        if(TxtStock.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese stock disponible");
+            vale=false;
+        }
+        if(TxtFecha.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese fecha de inicio de oferta");
+            vale=false;
+        }
+        if(TxtVigencia.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese vigencia de la oferta");
+            vale=false;
+        }
+        return vale;
+    }
     /**
      * @param args the command line arguments
      */
